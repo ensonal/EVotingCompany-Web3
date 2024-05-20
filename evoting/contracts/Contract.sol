@@ -49,19 +49,23 @@ contract Evoting {
         voters[voter].weight = 1; // In practice, set this to the number of shares the voter holds
     }
 
-    // Function for shareholders to vote on a proposal
     function vote(uint proposal) public {
-        Voter storage sender = voters[msg.sender];
-        
-        require(sender.weight != 0, "Has no right to vote");
-        require(!sender.voted, "Already voted");
+    Voter storage sender = voters[msg.sender];
+    
+    require(sender.weight != 0, "Has no right to vote");
+    require(!sender.voted, "Already voted");
 
-        sender.voted = true;
-        sender.vote = proposal;
-        sender.voteCounted = true; // Mark the vote as counted
+    sender.voted = true;
+    sender.vote = proposal;
+    sender.voteCounted = true; // Mark the vote as counted
 
-        proposals[proposal].voteCount += sender.weight;
-    }
+    proposals[proposal].voteCount += sender.weight;
+    
+    
+    emit VoteCast(msg.sender, proposal, sender.voteCounted);
+}
+    event VoteCast(address indexed voter, uint proposal, bool voteCounted);
+
 
     // Function to delegate vote to another voter
     function delegate(address to) public {
