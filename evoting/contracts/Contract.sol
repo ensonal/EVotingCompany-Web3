@@ -7,6 +7,7 @@ contract Evoting {
         uint vote; // Index of the voted proposal
         uint weight; // Weight of the vote
         bool voted; // True if the voter has already voted
+        bool voteCounted; // True if the voter's vote has been counted
     }
 
     // Struct to represent a proposal
@@ -57,6 +58,7 @@ contract Evoting {
 
         sender.voted = true;
         sender.vote = proposal;
+        sender.voteCounted = true; // Mark the vote as counted
 
         proposals[proposal].voteCount += sender.weight;
     }
@@ -72,6 +74,7 @@ contract Evoting {
 
         delegateTo.weight += sender.weight;
         sender.weight = 0;
+        sender.voteCounted = false; // Delegated votes are not directly counted
     }
 
     // Function to get the index of the winning proposal
@@ -89,5 +92,10 @@ contract Evoting {
     // Function to get the name of the winning proposal
     function winningName() public view returns (bytes32 winningName_) {
         winningName_ = proposals[winningProposal()].name;
+    }
+
+    // Function to check if a voter's vote has been counted
+    function isVoteCounted(address voter) public view returns (bool) {
+        return voters[voter].voteCounted;
     }
 }
