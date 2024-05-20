@@ -1,4 +1,6 @@
 require("@matterlabs/hardhat-zksync-solc");
+require("@nomiclabs/hardhat-waffle");
+require("@nomiclabs/hardhat-ethers");
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -23,5 +25,5 @@ module.exports = {
       zksync: true,
     },
   },
-  solidity: "0.8.17",
+  solidity: "0.8.9",
 };

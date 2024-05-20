@@ -6,11 +6,26 @@
     "release": "npx thirdweb@latest release"
   },
   "devDependencies": {
+    "@ethereum-waffle/chai": "^4.0.10",
     "@matterlabs/hardhat-zksync-solc": "^0.3.17",
-    "hardhat": "^2.13.0"
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "chai": "^4.3.4",
+    "ethereum-waffle": "^3.3.10",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.8.0"
   },
   "dependencies": {
     "@thirdweb-dev/contracts": "^3.8.0",
     "zksync-web3": "^0.14.3"
-  }
+  },
+  "description": "Create a project using this example:",
+  "version": "1.0.0",
+  "main": "hardhat.config.js",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
