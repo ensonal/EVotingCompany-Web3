@@ -39,15 +39,14 @@ contract Evoting {
         } 
     }
 
-    // Function to give the right to vote to a shareholder
-    function giveRightToVote(address voter) public {
+    function giveRightToVote(address voter, uint weight) public {
         require(msg.sender == chairperson, "Only the Chairperson can give access to vote");
         require(!voters[voter].voted, "The voter has already voted");
         require(voters[voter].weight == 0, "Voter's weight must be zero");
-        
-        // Set the voting weight based on the voter's shares (assumed to be 1 for simplicity)
-        voters[voter].weight = 1; // In practice, set this to the number of shares the voter holds
+
+        voters[voter].weight = weight;
     }
+
 
     function vote(uint proposal) public {
     Voter storage sender = voters[msg.sender];
